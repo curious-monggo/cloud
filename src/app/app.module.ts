@@ -1,3 +1,4 @@
+import { BrowserTab } from '@ionic-native/browser-tab';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -7,16 +8,21 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 
 import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { FirestoreProvider } from '../providers/firestore/firestore';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AuthProvider } from '../providers/auth/auth';
+import { UserProvider } from '../providers/user/user';
+
+import { Facebook } from '@ionic-native/facebook';
+import { PostProvider } from '../providers/post/post';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyATPIxkfOU5YK83yeND4tTAkt1gZNuPqew",
-  authDomain: "learnfirebase-c6088.firebaseapp.com",
-  databaseURL: "https://learnfirebase-c6088.firebaseio.com",
-  projectId: "learnfirebase-c6088",
-  storageBucket: "learnfirebase-c6088.appspot.com",
-  messagingSenderId: "134131666319"
+  apiKey: "AIzaSyD6Rg5ux3fQi3OrwrWCHAEipaxrk3hB7EY",
+  authDomain: "stigo-6d063.firebaseapp.com",
+  databaseURL: "https://stigo-6d063.firebaseio.com",
+  projectId: "stigo-6d063",
+  storageBucket: "stigo-6d063.appspot.com",
+  messagingSenderId: "510666125923"
 };
 
 @NgModule({
@@ -27,7 +33,8 @@ export const firebaseConfig = {
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFirestoreModule.enablePersistence()
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -36,8 +43,13 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
+    AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FirestoreProvider
+    AuthProvider,
+    UserProvider,
+    Facebook,
+    PostProvider,
+    BrowserTab
   ]
 })
 export class AppModule {}

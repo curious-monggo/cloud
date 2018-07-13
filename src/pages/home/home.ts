@@ -1,35 +1,25 @@
-import { Observable } from 'rxjs';
-import { FirestoreProvider } from './../../providers/firestore/firestore';
-import { Song } from './../../models/songs.interface';
 import { Component } from '@angular/core';
-import { NavController, IonicPage } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+/**
+ * Generated class for the HomePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @IonicPage()
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
 })
 export class HomePage {
 
-  public songList:Observable<Song[]>;
-
-  constructor(
-    public navCtrl: NavController,
-    public firestoreProvider: FirestoreProvider
-  ) {
-
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad(){
-    this.songList = this.firestoreProvider.getSongList().valueChanges();
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad HomePage');
   }
 
-  goToCreatePage(){
-    this.navCtrl.push('CreatePage');
-  }
-
-  goToDetailPage(song: Song): void{
-    this.navCtrl.push('DetailPage', { song: song });
-  } 
 }

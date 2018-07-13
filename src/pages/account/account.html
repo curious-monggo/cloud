@@ -1,5 +1,5 @@
 <!--
-  Generated template for the HomePage page.
+  Generated template for the AccountPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,12 +7,13 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>home</ion-title>
+    <ion-title>account</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <h6>Good morning, {{displayName}}</h6>
+  <button ion-button (click)="signOut()">Sign out</button>
 </ion-content>
